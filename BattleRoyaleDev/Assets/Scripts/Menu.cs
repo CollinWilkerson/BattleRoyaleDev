@@ -70,4 +70,47 @@ public class Menu : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
         screen.SetActive(true);
     }
+
+    /*************************
+     * MAIN SCREEN FUNCTIONS *
+     *************************/
+    /// <summary>
+    /// changes photon nickname to what is in the input field
+    /// </summary>
+    /// <param name="playerNameInput"></param>
+    public void OnPlayerNameChanged(TMP_InputField playerNameInput)
+    {
+        PhotonNetwork.NickName = playerNameInput.text;
+    }
+
+    //allows the player to interact with buttons when they have connected to photon
+    public override void OnConnectedToMaster()
+    {
+        createRoomButton.interactable = true;
+        findRoomButton.interactable = true;
+    }
+
+    public void OnCreateRoomButton()
+    {
+        SetScreen(createRoomScreen);
+    }
+
+    public void OnFindRoomButton()
+    {
+        SetScreen(lobbyBrowserScreen);
+    }
+
+    public void OnBackButton()
+    {
+        SetScreen(mainScreen);
+    }
+
+    /// <summary>
+    /// creates a room with the name of the input
+    /// </summary>
+    /// <param name="roomNameInput"></param>
+    public void OnCreateButton(TMP_InputField roomNameInput)
+    {
+        NetworkManager.instance.CreateRoom(roomNameInput.text);
+    }
 }
