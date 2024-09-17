@@ -130,7 +130,6 @@ MonoBehaviour:
   jumpForce: 8
   rig: {fileID: 4609836236668399478}
   id: 0
-  childCam: {fileID: 5780050564294281650}
 --- !u!54 &4609836236668399478
 Rigidbody:
   m_ObjectHideFlags: 0
