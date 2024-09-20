@@ -139,6 +139,19 @@ public class PlayerController : MonoBehaviourPun
     [PunRPC]
     private void Die()
     {
+        curHp = 0;
+        dead = true;
 
+        GameManager.instance.alivePlayers--;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager.instance.CheckWinCondition();
+        }
+
+        if (photonView.IsMine)
+        {
+
+        }
     }
 }

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private int playersInGame;
     // instance
     public static GameManager instance;
+    public float postGameTime;
 
     private void Awake()
     {
@@ -45,5 +46,34 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         GameObject playerObj = PhotonNetwork.Instantiate(playerPrefabLocation, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
         playerObj.GetComponent<PlayerController>().photonView.RPC("Initialize", RpcTarget.All, PhotonNetwork.LocalPlayer);
+    }
+
+    public PlayerController GetPlayer(int playerId)
+    {
+        return players.First(x => x.id == playerId);
+    }
+
+    public PlayerController GetPlayer(GameObject playerObj)
+    {
+        return players.First(x => x.gameObject == playerObj);
+    }
+
+    public void CheckWinCondition()
+    {
+        if(alivePlayers == 1)
+        {
+            photonView.RPC("WinGame", RpcTarget.All, players.First(x => !x.dead).id);
+        }
+    }
+
+    [PunRPC]
+    private void WinGame(int winningPlayer)
+    {
+        Invoke("GoBackToMenu", postGameTime);
+    }
+
+    void GoBackToMenu()
+    {
+        NetworkManager.instance.ChangeScene("Menu");
     }
 }
