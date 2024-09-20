@@ -1,4 +1,4 @@
 # BattleRoyaleDev
  For SIM 251
 
-PLAY AT:
+PLAY AT: https://collinwilkerson.github.io/BattleRoyaleDev/
