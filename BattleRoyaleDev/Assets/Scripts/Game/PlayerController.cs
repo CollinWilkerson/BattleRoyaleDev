@@ -13,8 +13,17 @@ public class PlayerController : MonoBehaviourPun
     [Header("Components")]
     public Rigidbody rig;
 
+    [Header("GameStats")]
+    public int curHp;
+    public int maxHp;
+    public int kills;
+    public bool dead;
+    private bool flashingDamage;
+    public MeshRenderer mr;
+
     public int id;
     public Player photonPlayer;
+    private int curAttackerId;
     //public GameObject childCam;
 
     private void Start()
@@ -24,6 +33,12 @@ public class PlayerController : MonoBehaviourPun
 
     private void Update()
     {
+        //only operate on live client player
+        if(!photonView.IsMine || dead)
+        {
+            return;
+        }
+
         Move();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -72,5 +87,52 @@ public class PlayerController : MonoBehaviourPun
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
             rig.isKinematic = true;
         }
+    }
+
+    [PunRPC]
+    public void TakeDamage(int attackerId, int damage)
+    {
+        if (dead)
+        {
+            return;
+        }
+
+        curHp -= damage;
+        curAttackerId = attackerId;
+        photonView.RPC("DamageFlash", RpcTarget.All);
+
+        if(curHp < 0)
+        {
+            photonView.RPC("Die", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    private void DamageFlash()
+    {
+        if (flashingDamage)
+        {
+            return;
+        }
+
+        StartCoroutine(DamageFlashCoRoutine());
+
+        IEnumerator DamageFlashCoRoutine()
+        {
+            flashingDamage = true;
+            Color defaultColor = mr.material.color;
+            mr.material.color = Color.red;
+
+            yield return new WaitForSeconds(0.05f);
+
+            mr.material.color = defaultColor;
+            flashingDamage = false;
+        }
+    }
+
+    [PunRPC]
+    private void Die()
+    {
+
     }
 }
