@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviourPun
     public bool dead;
     private bool flashingDamage;
     public MeshRenderer mr;
+    public PlayerWeapon weapon;
 
     public int id;
     public Player photonPlayer;
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviourPun
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TryJump();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            weapon.TryShoot();
         }
 
         //rig.rotation = childCam.transform.rotation;
