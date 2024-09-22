@@ -50,25 +50,28 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public PlayerController GetPlayer(int playerId)
     {
-        return players.First(x => x.id == playerId);
+        return players.FirstOrDefault(x => x.id == playerId);
     }
 
     public PlayerController GetPlayer(GameObject playerObj)
     {
-        return players.First(x => x.gameObject == playerObj);
+        return players.FirstOrDefault(x => x.gameObject == playerObj);
     }
 
     public void CheckWinCondition()
     {
         if(alivePlayers == 1)
         {
-            photonView.RPC("WinGame", RpcTarget.All, players.First(x => !x.dead).id);
+            photonView.RPC("WinGame", RpcTarget.All, players.FirstOrDefault(x => !x.dead).id);
         }
     }
 
     [PunRPC]
     private void WinGame(int winningPlayer)
     {
+
+        GameUI.instance.SetWinText(GetPlayer(winningPlayer).photonPlayer.NickName);
+
         Invoke("GoBackToMenu", postGameTime);
     }
 
