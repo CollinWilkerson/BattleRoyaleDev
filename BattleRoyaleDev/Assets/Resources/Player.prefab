@@ -129,12 +129,12 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 8
   rig: {fileID: 4609836236668399478}
-  curHp: 0
-  maxHp: 0
+  curHp: 100
+  maxHp: 100
   kills: 0
   dead: 0
-  mr: {fileID: 0}
-  weapon: {fileID: 0}
+  mr: {fileID: 6399897388103043932}
+  weapon: {fileID: 4034885836568753488}
   id: 0
 --- !u!54 &4609836236668399478
 Rigidbody:
@@ -448,3 +448,4 @@ MonoBehaviour:
   shootRate: 1
   bulletPrefab: {fileID: 5427455784750544602, guid: a68825aed126ee44aa051d6817c3a451, type: 3}
   bulletSpawnPos: {fileID: 4668802318768490181}
+  player: {fileID: 5210928506976309859}

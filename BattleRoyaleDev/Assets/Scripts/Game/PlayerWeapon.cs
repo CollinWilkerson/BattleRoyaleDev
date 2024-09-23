@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerWeapon : MonoBehaviour
+public class PlayerWeapon : MonoBehaviourPunCallbacks
 {
     [Header("Stats")]
     public int damage;
@@ -14,10 +14,11 @@ public class PlayerWeapon : MonoBehaviour
     public float shootRate;
 
     private float lastShootTime;
+    
     public GameObject bulletPrefab;
     public Transform bulletSpawnPos;
 
-    private PlayerController player;
+    public PlayerController player;
 
     private void Awake()
     {
@@ -35,10 +36,9 @@ public class PlayerWeapon : MonoBehaviour
         curAmmo--;
         lastShootTime = Time.time;
 
-        player.photonView.RPC("SpawnBullet", RpcTarget.All, bulletSpawnPos.transform.position, Camera.main.transform.forward);
-
-
         GameUI.instance.UpdateAmmoText();
+
+        player.photonView.RPC("SpawnBullet", RpcTarget.All, bulletSpawnPos.transform.position, Camera.main.transform.forward);
     }
 
     [PunRPC]
