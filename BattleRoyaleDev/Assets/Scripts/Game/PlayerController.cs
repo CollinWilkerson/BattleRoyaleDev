@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviourPun
     public bool dead;
     private bool flashingDamage;
     public MeshRenderer mr;
-    public PlayerWeapon weapon;
 
     public int id;
     public Player photonPlayer;
+
     private int curAttackerId;
-    //public GameObject childCam;
+    public PlayerWeapon weapon;
 
     private void Start()
     {
@@ -51,8 +51,6 @@ public class PlayerController : MonoBehaviourPun
         {
             weapon.TryShoot();
         }
-
-        //rig.rotation = childCam.transform.rotation;
     }
 
     private void Move()

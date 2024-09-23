@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4609836236668399478}
   - component: {fileID: 2390253689560466595}
   - component: {fileID: 8634906624151635520}
+  - component: {fileID: 7602284839806128927}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -134,8 +135,8 @@ MonoBehaviour:
   kills: 0
   dead: 0
   mr: {fileID: 6399897388103043932}
-  weapon: {fileID: 4034885836568753488}
   id: 0
+  weapon: {fileID: 7602284839806128927}
 --- !u!54 &4609836236668399478
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -202,6 +203,26 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7602284839806128927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963751093837703755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db94518981e8414898db074d5f4e814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  curAmmo: 25
+  maxAmmo: 25
+  bulletSpeed: 100
+  shootRate: 1
+  bulletPrefab: {fileID: 5427455784750544602, guid: a68825aed126ee44aa051d6817c3a451, type: 3}
+  bulletSpawnPos: {fileID: 4668802318768490181}
+  player: {fileID: 5210928506976309859}
 --- !u!1 &5780050564294281650
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +438,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5546fa82def4d294abb58e960a61e54a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4034885836568753488}
+      addedObject: {fileID: 3641985122302533909}
   m_SourcePrefab: {fileID: 100100000, guid: 5546fa82def4d294abb58e960a61e54a, type: 3}
 --- !u!4 &246239042216688149 stripped
 Transform:
@@ -429,7 +450,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5546fa82def4d294abb58e960a61e54a, type: 3}
   m_PrefabInstance: {fileID: 351395566008475134}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4034885836568753488
+--- !u!114 &3641985122302533909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,14 +459,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 585751308461940911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db94518981e8414898db074d5f4e814, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  curAmmo: 25
-  maxAmmo: 25
-  bulletSpeed: 100
-  shootRate: 1
-  bulletPrefab: {fileID: 5427455784750544602, guid: a68825aed126ee44aa051d6817c3a451, type: 3}
-  bulletSpawnPos: {fileID: 4668802318768490181}
-  player: {fileID: 5210928506976309859}
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
