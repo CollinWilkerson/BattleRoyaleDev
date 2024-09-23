@@ -64,7 +64,7 @@ public class CameraController : MonoBehaviour
             transform.localRotation = Quaternion.Euler(-rotY, 0, 0);
 
             //horizontal rotation that maintains vertical
-            transform.localRotation = Quaternion.Euler(transform.rotation.x, rotX, 0);
+            transform.parent.localRotation = Quaternion.Euler(0, rotX, 0);
         }
     }
 

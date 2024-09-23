@@ -33,6 +33,8 @@ public class Pickup : MonoBehaviour
             {
                 player.photonView.RPC("GiveAmmo", player.photonPlayer, value);
             }
+
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 
