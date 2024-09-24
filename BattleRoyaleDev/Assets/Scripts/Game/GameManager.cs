@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void WinGame(int winningPlayer)
     {
-
+        Debug.Log("winning player: " + winningPlayer);
         GameUI.instance.SetWinText(GetPlayer(winningPlayer).photonPlayer.NickName);
 
         Invoke("GoBackToMenu", postGameTime);

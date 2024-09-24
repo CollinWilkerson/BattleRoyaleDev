@@ -1976,7 +1976,7 @@ MonoBehaviour:
   healthBar: {fileID: 1436097784}
   playerInfoText: {fileID: 979866234}
   ammoText: {fileID: 668280943}
-  winText: {fileID: 0}
+  winText: {fileID: 1544523602}
   winBackground: {fileID: 2008392582}
 --- !u!1 &882175550
 GameObject:
